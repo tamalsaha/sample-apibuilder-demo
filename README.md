@@ -10,10 +10,6 @@ $ apiserver-boot create group version resource --group kubedb --version v1alpha1
 $ apiserver-boot create group version resource --group kubedb --version v1alpha1 --kind PostgresOverview
 
 $ make generate manifests fmt
+
+$ apiserver-boot run local
 ```
-
-~/g/s/g/t/sample-apibuilder-demo (master|…) $ go run cmd/apiserver/main.go -h
-
-
-https://github.com/kubernetes-sigs/apiserver-builder-alpha/blob/master/docs/tools_user_guide.md
-
