@@ -29,6 +29,7 @@ func main() {
 		// +kubebuilder:scaffold:resource-register
 		WithResource(&kubedbv1alpha1.PostgresOverview{}).
 		WithResource(&kubedbv1alpha1.MongoDBInfoView{}).
+		WithLocalDebugExtension().
 		Execute()
 	if err != nil {
 		klog.Fatal(err)

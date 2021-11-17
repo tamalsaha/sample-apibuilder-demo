@@ -1,0 +1,48 @@
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- resources:
+  - mongodbinfoviews
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- resources:
+  - mongodbinfoviews/finalizers
+  verbs:
+  - update
+- resources:
+  - mongodbinfoviews/status
+  verbs:
+  - get
+  - patch
+  - update
+- resources:
+  - postgresoverviews
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- resources:
+  - postgresoverviews/finalizers
+  verbs:
+  - update
+- resources:
+  - postgresoverviews/status
+  verbs:
+  - get
+  - patch
+  - update
