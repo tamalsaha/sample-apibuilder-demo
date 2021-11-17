@@ -1,4 +1,3 @@
-
 /*
 
 
@@ -22,15 +21,14 @@ import (
 	"sigs.k8s.io/apiserver-runtime/pkg/builder"
 
 	// +kubebuilder:scaffold:resource-imports
-kubedbv1alpha1 "github.com/tamalsaha/sample-apibuilder-demo/pkg/apis/kubedb/v1alpha1"
-kubedbv1alpha1 "github.com/tamalsaha/sample-apibuilder-demo/pkg/apis/kubedb/v1alpha1"
+	kubedbv1alpha1 "github.com/tamalsaha/sample-apibuilder-demo/pkg/apis/kubedb/v1alpha1"
 )
 
 func main() {
 	err := builder.APIServer.
 		// +kubebuilder:scaffold:resource-register
-WithResource(&kubedbv1alpha1.PostgresOverview{}).
-WithResource(&kubedbv1alpha1.MongoDBInfoView{}).
+		WithResource(&kubedbv1alpha1.PostgresOverview{}).
+		WithResource(&kubedbv1alpha1.MongoDBInfoView{}).
 		Execute()
 	if err != nil {
 		klog.Fatal(err)

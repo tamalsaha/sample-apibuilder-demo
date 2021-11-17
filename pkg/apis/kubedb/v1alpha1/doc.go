@@ -1,4 +1,3 @@
-
 /*
 
 
@@ -25,4 +24,3 @@ limitations under the License.
 // +k8s:defaulter-gen=TypeMeta
 // +groupName=kubedb.ui.bytebuilder.dev
 package v1alpha1 // import "github.com/tamalsaha/sample-apibuilder-demo/pkg/apis/kubedb/v1alpha1"
-

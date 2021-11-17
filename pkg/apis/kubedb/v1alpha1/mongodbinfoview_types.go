@@ -1,4 +1,3 @@
-
 /*
 
 
@@ -21,7 +20,7 @@ import (
 	"context"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
- 	"k8s.io/apimachinery/pkg/runtime"
+	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/util/validation/field"
 	"sigs.k8s.io/apiserver-runtime/pkg/builder/resource"
@@ -44,7 +43,7 @@ type MongoDBInfoView struct {
 // MongoDBInfoViewList
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 type MongoDBInfoViewList struct {
-	metav1.TypeMeta   `json:",inline"`
+	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 
 	Items []MongoDBInfoView `json:"items"`
@@ -95,6 +94,7 @@ var _ resource.ObjectList = &MongoDBInfoViewList{}
 func (in *MongoDBInfoViewList) GetListMeta() *metav1.ListMeta {
 	return &in.ListMeta
 }
+
 // MongoDBInfoViewStatus defines the observed state of MongoDBInfoView
 type MongoDBInfoViewStatus struct {
 }
