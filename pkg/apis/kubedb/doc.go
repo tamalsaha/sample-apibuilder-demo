@@ -15,24 +15,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package main
 
-import (
-	"k8s.io/klog"
-	"sigs.k8s.io/apiserver-runtime/pkg/builder"
+// +k8s:deepcopy-gen=package,register
+// +groupName=kubedb.ui.bytebuilder.dev
 
-	// +kubebuilder:scaffold:resource-imports
-kubedbv1alpha1 "github.com/tamalsaha/sample-apibuilder-demo/pkg/apis/kubedb/v1alpha1"
-kubedbv1alpha1 "github.com/tamalsaha/sample-apibuilder-demo/pkg/apis/kubedb/v1alpha1"
-)
+// Package api is the internal version of the API.
+package kubedb
 
-func main() {
-	err := builder.APIServer.
-		// +kubebuilder:scaffold:resource-register
-WithResource(&kubedbv1alpha1.PostgresOverview{}).
-WithResource(&kubedbv1alpha1.MongoDBInfoView{}).
-		Execute()
-	if err != nil {
-		klog.Fatal(err)
-	}
-}

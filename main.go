@@ -26,6 +26,10 @@ import (
 	_ "k8s.io/client-go/plugin/pkg/client/auth/gcp"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
+
+	controllers "github.com/tamalsaha/sample-apibuilder-demo/controllers/kubedb"
+	mongodbinfoviews "github.com/tamalsaha/sample-apibuilder-demo/pkg/apis/kubedb/v1alpha1"
+	postgresoverviews "github.com/tamalsaha/sample-apibuilder-demo/pkg/apis/kubedb/v1alpha1"
 	// +kubebuilder:scaffold:imports
 )
 
@@ -37,6 +41,8 @@ var (
 func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 
+	utilruntime.Must(mongodbinfoviews.AddToScheme(scheme))
+	utilruntime.Must(postgresoverviews.AddToScheme(scheme))
 	// +kubebuilder:scaffold:scheme
 }
 
@@ -63,6 +69,22 @@ func main() {
 		os.Exit(1)
 	}
 
+	if err = (&controllers.MongoDBInfoViewReconciler{
+		Client: mgr.GetClient(),
+		Log:    ctrl.Log.WithName("controllers").WithName("kubedb").WithName("MongoDBInfoView"),
+		Scheme: mgr.GetScheme(),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to create controller", "controller", "MongoDBInfoView")
+		os.Exit(1)
+	}
+	if err = (&controllers.PostgresOverviewReconciler{
+		Client: mgr.GetClient(),
+		Log:    ctrl.Log.WithName("controllers").WithName("kubedb").WithName("PostgresOverview"),
+		Scheme: mgr.GetScheme(),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to create controller", "controller", "PostgresOverview")
+		os.Exit(1)
+	}
 	// +kubebuilder:scaffold:builder
 
 	setupLog.Info("starting manager")
